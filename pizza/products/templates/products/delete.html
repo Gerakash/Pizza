@@ -1,0 +1,8 @@
+<form method="POST" action="">
+    {% csrf_token %}
+    <h1>
+        Are you sure you want to delete this {{order}}?
+    </h1>
+    <a href="{% url 'create_order' %}">Back</a>
+    <input type="submit" name="Submit">
+</form>

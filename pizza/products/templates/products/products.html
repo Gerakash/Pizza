@@ -1,0 +1,28 @@
+{% extends 'products/base.html' %}
+{% block content %}
+<div class="container pb-5 mb-sm-1">
+    <!-- Categories grid-->
+    <div class="row">
+        <!-- Category-->
+        {% for product in products %}
+        <div class="col-md-4 col-sm-6">
+            <div class="card border-0 mb-grid-gutter">
+                <a class="card-img-tiles" href="shop-style1-ls.html">
+                    <div class="main-img"><img src="{{ product.image.url }}" alt="Pizza" width="340" height="326"></div>
+
+                </a>
+                <div class="card-body border mt-n1 py-4 text-center">
+                    <h2 class="h5 mb-1">{{ product.name }}</h2>
+                    <span class="d-block mb-3 font-size-xs text-muted" >{{ product.description }}
+                        <span class="font-weight-semibold">{{ product.price }}</span>
+                        <span class="font-weight-semibold">{{ product.category }}</span></span>
+                    <a class="btn btn-pill btn-outline-primary btn-sm" href="{% url 'create_order' product.id %}" >Add to cart</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
