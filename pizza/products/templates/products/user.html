@@ -11,14 +11,16 @@
     </tr>
   </thead>
   <tbody>
-  {% for user in users %}
+
     <tr>
       <th scope="row">1</th>
-      <td>{{ user }}</td>
-      <td>{{ user.username }}</td>
-      <td>{{ user.email }}</td>
+      <td>{{ users.gender }}</td>
+      <td>{{ users.full_name }}</td>
+      <td>{{ users.phone }}</td>
+      <td>{{ users.wallet }}</td>
+      <td>{{ users.order_count }}</td>
     </tr>
-  {% endfor %}
+
   </tbody>
 </table>
 {% endblock %}
