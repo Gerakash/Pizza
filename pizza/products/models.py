@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib.auth.models import User
 from django.db import models
+from datetime import date
 
 # Create your models here.
 
@@ -24,6 +26,7 @@ class Product(models.Model):
 
 
 class AboutUs(models.Model):
+    image = models.ImageField()
     title = models.CharField(max_length=40)
     description = models.TextField()
 
@@ -34,13 +37,47 @@ class Order(models.Model):
         ('delivered','delivered'),
         ('not_delivered','not_delivered')
     )
+    payment_methods = (
+        ('Nal','Nal'),
+        ('Wall','Wall')
+    )
+
+    user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
+    payment_type = models.CharField(max_length=20,choices=payment_methods)
     status = models.CharField(max_length=40,choices=statuses,default='in_process')
     date = models.DateTimeField(auto_now_add=True)
     product = models.ForeignKey(Product,on_delete=models.SET_NULL,null=True)
     quantity = models.IntegerField()
 
-    def __str__(self):
-        return self.name
+
+class Documents(models.Model):
+    file = models.FileField()
+
+
+class Profile(models.Model):
+    genders = (
+        ('Male','Male'),
+        ('Female','Female')
+    )
+
+    user = models.OneToOneField(User,on_delete=models.SET_NULL,null=True)
+    image = models.ImageField()
+    full_name = models.CharField(max_length=60)
+    birth_date = models.DateField(default=date.today())
+    phone = models.IntegerField(default=0)
+    gender = models.CharField(max_length=20)
+    address = models.CharField(max_length=50)
+    wallet = models.IntegerField(default=0)
+    order_count = models.IntegerField(default=0)
+
+
+
+
+
+
+
+
+
 
 
 
